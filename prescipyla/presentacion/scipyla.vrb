@@ -1,0 +1,28 @@
+\frametitle{ Context and Generators}
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}
+    % Place nodes
+    \node [block] (init) {Create and initialize Context};
+    \node [block, below of=init] (generators) {Create and start Generators};
+    \node [block, below of=generators] (wait) {Wait and update Context};
+    \node [block, below of=wait] (do) {Do something and Visualize it};
+    \node [block, below of=do, fill=red!30] (stop) {Stop Generators and Remove Context};
+    % Draw edges
+    \path [line] (init) -- (generators);
+    \path [line] (generators) -- (wait);
+    \path [line] (wait) -- (do);
+    \path [line] (do) -- (stop);
+    %\path [line] (viz) -| (wait);
+     \path [line] (do.east) to[out=50,in=-50] (wait.east);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+Ways to stop data acquisition:
+\begin{minted}{python}
+ ctx.stop_generating_all()
+
+ node_gen.stop_generating()
+
+ ctx.shutdown()
+ \end{minted}
+\end{minipage}
