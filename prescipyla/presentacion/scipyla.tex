@@ -5,22 +5,21 @@
 \usepackage[T1]{fontenc}
 \usepackage[absolute,overlay]{textpos}
 %\usepackage[bookmarks=false,pdffitwindow]{hyperref}
-%\usepackage{fancybox}
-\usepackage{graphicx}
-\usepackage{minted}
+\usepackage{fancybox}
+%\usepackage{graphicx}
+%\usepackage{minted}
+\usepackage{animate}
+%\usepackage{graphics}
 \usepackage{xcolor}
-\usepackage{calc}
-
-\usetheme{CambridgeUS}
-\definecolor{RawSienna}{cmyk}{0,0.72,1,0.45}
-\usecolortheme[named=RawSienna]{structure}
-\usetikzlibrary{shapes.geometric, arrows}
+\usetheme{Berkeley-structure}
+\definecolor{ao}{rgb}{0.0, 0.5, 0.0}
+\usecolortheme[named=ao]{structure}
 
 \begin{document}
-\logo{  \includegraphics[scale=0.06,keepaspectratio]{Imagenes/logos.png}}
-\title{3D sensors and Python:\\ A space odyssey \\[0.5cm]}
-\subtitle{Celia Cintas \\[0.2cm] EuroPython 2014 \\[0.3cm]
-\includegraphics[scale=0.2]{Imagenes/hall360.png}}
+\logo{  \includegraphics[scale=0.2,keepaspectratio]{Imagenes/logos.png}}
+\title{Showing some of the goodies: pandas, scikit-learn and matplotlib\\[0.5cm]}
+\subtitle{Celia Cintas \\[0.2cm] Pre-SciPyLa 2015 \\[0.3cm]
+\includegraphics[scale=0.2]{Imagenes/scipy.png}}
 \date{}
 \begin{frame}
 \titlepage
@@ -34,331 +33,158 @@
 %\end{frame}
 \begin{frame}{\$ whoami}
 \begin{itemize}
-    \item PhD Student in Computer Science.
-    \item Assistant Professor at UNPSJB.
-    \item Work in CENPAT-CONICET and Imaging Science Lab.
-    \item Co-Organizer of SciPyCon Argentina.
+    \item Estudiante de Doctorado en Ciencias de la Computación (UNS).
+    \item Docente en UNPSJB.
+    \item Trabajo en proyectos del CENPAT-CONICET y el Lab de Cs de las Imágenes.
+    \item Co-Organizadora of SciPyCon Argentina 2013 y 2014.
 \end{itemize}
 \begin{figure}
         \includegraphics[scale = 0.25]{Imagenes/uni.png}
 \end{figure}
 \end{frame}
 
-\begin{frame}[t]{ HAL 9000 Jr. - The Hardware}
-\begin{figure}
-		\includegraphics[scale = 0.3]{Imagenes/3dsensors.png}
-\end{figure}
-\begin{figure}
-		\includegraphics[scale = 0.4]{Imagenes/component.png}
-\end{figure}
-\end{frame}
+\section{Qu\'e es Python?}
 
-\section{A tale of OpenNI}
-\begin{frame}[fragile]{ What is OpenNI Framework - NITE ??}
-\begin{center}
-\animategraphics[autoplay,loop, height=5cm]{10}{Imagenes/gif/my_pngfiles_}{0}{37} 
-\url{http://structure.io/openni}
-\end{center}
-\end{frame}
-
-\begin{frame}{ Where can I run it ...??}
-\begin{minipage}{0.47\textwidth}
-\begin{itemize}
-	\item Linux (x86, x64, ARM)
-	\item Mac OS X (x64 Intel Processors)
-	\item Windows (x86, x64)
-%	\item Android
-\end{itemize}
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-\begin{figure}[h]
-		\includegraphics[scale = 0.25]{Imagenes/platforms.png}
-\end{figure}
-\end{minipage}
-\end{frame}
-
-%\begin{frame}{ What can I do with it?}
-%\begin{figure}[h]
-		%\includegraphics[scale = 0.22]{Imagenes/what.png}
+\begin{frame}{¿Qu\'e es Python ?}
+    Python es un lenguaje de programación dinámico de propósito general. Algunas de sus características son:
+    \begin{itemize}
+        \item Fácil de aprender.
+        \item Es todo terreno. 
+        \item Es libre, con un ecosistema libre.
+        \item Interactivo, pueden verse resultados rápidamente.
+        \item Puede comunicarse con otros lenguajes fácilmente.(R, Fortran, C, C++, LaTeX)
+        \item Argentina tiene la comunidad hispanohablante más grande.
+        \item Muy bien documentado.
+    \end{itemize}
+% \begin{figure}[h]
+%   \begin{center}
+%       \includegraphics[scale = 0.4]{venn.png}
+%   \end{center}
+    %\caption{Landmarks de tipo II, imagen obtenida de ~\cite{Gonzalez2011} }
 %\end{figure}
-%\end{frame}
-
-\begin{frame}{ What can I do with it?}
-
-\begin{figure}[h]
-		\includegraphics[scale = 0.22]{Imagenes/what_2.png}
-\end{figure}
-\tiny{Images from Smart Terrain \texttrademark of Vuforia\texttrademark, xbmc, ninja-fruit, Ni-Mate, Artec Studio\\ and QBo Robot}
+%Hacer diagrama de venn
 \end{frame}
 
-\begin{frame}[fragile]{ Python bindings}
+%---------------------------------------------------------------------------
+\begin{frame}{Qu\'e podemos hacer con Python?}
+ \begin{figure}[h]
+%   \begin{center}
+        \includegraphics[scale = 0.25]{Imagenes/quehacer5.png}
+%   \end{center}
+    %\caption{Landmarks de tipo II, imagen obtenida de ~\cite{Gonzalez2011} }
+\end{figure}
+\end{frame}
+
+\begin{frame}{Qu\'e podemos hacer con Python? (Cont.)}
+
+ \begin{figure}[h]
+%   \begin{center}
+        \includegraphics[scale = 0.2]{Imagenes/quehacer2.png}
+%   \end{center}
+    %\caption{Landmarks de tipo II, imagen obtenida de ~\cite{Gonzalez2011} }
+\end{figure}
+\end{frame}
+
+
+
+%---------------------------------------------------------------------------
+\begin{frame}{Qu\'e podemos hacer con Python? (Cont.)}
+
+ \begin{figure}[h]
+%   \begin{center}
+        \includegraphics[scale = 0.18]{Imagenes/quehacer3.png}
+%   \end{center}
+    %\caption{Landmarks de tipo II, imagen obtenida de ~\cite{Gonzalez2011} }
+\end{figure}
+\end{frame}
+
+
+%---------------------------------------------------------------------------
+\begin{frame}{Qu\'e podemos hacer con Python? (Cont.)}
+
+ \begin{figure}[h]
+%   \begin{center}
+        \includegraphics[scale = 0.22]{Imagenes/quehacer4.png}
+%   \end{center}
+    %\caption{Landmarks de tipo II, imagen obtenida de ~\cite{Gonzalez2011} }
+\end{figure}
+\end{frame}
+
+
+%---------------------------------------------------------------------------
+\section{Cómo el ecosistema de Python Científico puede ayudarme en mi trabajo?}
+\begin{frame}{Flujo de trabajo básico}
+ \begin{figure}[h]
+%   \begin{center}
+        \includegraphics[scale = 0.6]{Imagenes/0-.png}
+%   \end{center}
+    %\caption{Landmarks de tipo II, imagen obtenida de ~\cite{Gonzalez2011} }
+\end{figure}
+\end{frame}
+%---------------------------------------------------------------------------
+\section{Cómo el ecosistema de Python Científico puede ayudarme en mi trabajo?}
+\begin{frame}{Flujo de trabajo básico (cont.)}
+ \begin{figure}[h]
+%   \begin{center}
+        \includegraphics[scale = 0.6]{Imagenes/1-.png}
+%   \end{center}
+    %\caption{Landmarks de tipo II, imagen obtenida de ~\cite{Gonzalez2011} }
+\end{figure}
+\end{frame}
+
+%---------------------------------------------------------------------------
+\section{Instalación}
+\begin{frame}[fragile]{Cómo se instala todo esto?!}
+    \begin{itemize}
+        \item Linux
+        \begin{itemize}
+            \item \begin{verbatim} # apt-get install ... \end{verbatim}
+            \item \begin{verbatim} # pacman -S ... \end{verbatim}
+            \item \begin{verbatim} # pip install ...\end{verbatim}
+        \end{itemize}
+        \item Multiplataforma
+        \begin{itemize}
+            \item Anaconda
+            \item Canopy
+            \item Python(x,y)
+        \end{itemize}
+        \item Mac OS
+        \begin{itemize}
+            \item SciPy SuperPack
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------------
+\begin{frame}[fragile]{Instalando Anaconda ...}
+     \begin{figure}[h]
+%   \begin{center}
+        \includegraphics[scale = 0.22]{Imagenes/instalacion.png}
+%   \end{center}
+    %\caption{Landmarks de tipo II, imagen obtenida de ~\cite{Gonzalez2011} }
+\end{figure}
+\end{frame}
+%---------------------------------------------------------------------------
+\begin{frame}{Instalando Anaconda ... (Cont.)}
+Qué es lo que acabamos de instalar?
 \begin{itemize}
-	\item PyOpenNI\\
-    \url{https://github.com/jmendeth/PyOpenNI}
-	\item primesense \\ 
-    \url{https://pypi.python.org/pypi/primesense/2.2.0.30-3}
+    \item Spyder.
+    \item Ipython Notebook.
+    \item Ipython QTConsole.
+    \item Ipython.
+    \item Anaconda Console.
+    \item Wakari.
 \end{itemize}
-
 \end{frame}
-%\begin{frame}[fragile]{Demos}
-%\movie[height=5cm,width=10cm]{}{Videos/new.avi}
-%\end{frame}
-\section{Starting with PyOpenNI}
-\begin{frame}[fragile]{ Context and Generators}
-\begin{minipage}{0.45\textwidth}
-\begin{tikzpicture}
-    % Place nodes
-    \node [block, fill=red!30] (init) {Create and initialize Context};
-    \node [block, below of=init] (generators) {Create and start Generators};
-    \node [block, below of=generators] (wait) {Wait and update Context};
-    \node [block, below of=wait] (do) {Do something and Visualize it};
-    \node [block, below of=do] (stop) {Stop Generators and Remove Context};
-    % Draw edges
-    \path [line] (init) -- (generators);
-    \path [line] (generators) -- (wait);
-    \path [line] (wait) -- (do);
-    \path [line] (do) -- (stop);
-    %\path [line] (viz) -| (wait);
-     \path [line] (do.east) to[out=50,in=-50] (wait.east);
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-Different ways to work whith a context:\\
-\begin{small}
-\begin{minted}{python}
-ctx.init()
-
-ctx.init_from_xml_file('conf.xml')
-
-ctx.find_existing_node(type_node)
-
-ctx.open_file_recording('rec.oni')
-\end{minted}
-\end{small}
-\end{minipage}
-
-%\begin{textblock}{4}(2,5.2)
-%\begin{shadowblock}{4cm}
-%And a small one on top of it.
-%\end{shadowblock}
-%\end{textblock}
-
-\end{frame}
-
-\begin{frame}{ Context and Generators}
-\begin{minipage}{0.45\textwidth}
-\begin{tikzpicture}
-    % Place nodes
-    \node [block] (init) {Create and initialize Context};
-    \node [block, below of=init, fill=red!30] (generators) {Create and start Generators};
-    \node [block, below of=generators] (wait) {Wait and update Context};
-    \node [block, below of=wait] (do) {Do something and Visualize it};
-    \node [block, below of=do] (stop) {Stop Generators and Remove Context};
-    % Draw edges
-    \path [line] (init) -- (generators);
-    \path [line] (generators) -- (wait);
-    \path [line] (wait) -- (do);
-    \path [line] (do) -- (stop);
-    %\path [line] (viz) -| (wait);
-     \path [line] (do.east) to[out=50,in=-50] (wait.east);
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.45\textwidth}
-\begin{itemize}
-	\item Image, Depth, IR Generator
-	\item User, Gesture, Hand Generator
-	\item User Generator has pose and skeleton Capabilities
-	\item Register Callbacks to do specific task
-	\item Start / Stop wich Generator
-	\item Set up fps, resolution, etc.
-\end{itemize}
-\end{minipage}
-\end{frame}
-
-\begin{frame}[fragile]{ Context and Generators}
-\begin{minipage}{0.45\textwidth}
-\begin{tikzpicture}
-    % Place nodes
-    \node [block] (init) {Create and initialize Context};
-    \node [block, below of=init] (generators) {Create and start Generators};
-    \node [block, below of=generators, fill=red!30] (wait) {Wait and update Context};
-    \node [block, below of=wait] (do) {Do something and Visualize it};
-    \node [block, below of=do] (stop) {Stop Generators and Remove Context};
-    % Draw edges
-    \path [line] (init) -- (generators);
-    \path [line] (generators) -- (wait);
-    \path [line] (wait) -- (do);
-    \path [line] (do) -- (stop);
-    %\path [line] (viz) -| (wait);
-     \path [line] (do.east) to[out=50,in=-50] (wait.east);
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-You can choose when you want to get new data:\\
-\begin{minted}{python}
- ctx.wait_and_update_all()
-
- ctx.wait_none_update_all() 
-
- ctx.wait_any_update_all()
-
- ctx.wait_one_update_all(node) 
-\end{minted}
-%\begin{itemize}
-%	\item Wait for X node
-%	\item Wait for any node
-%	\item Wait for all nodes 
-%	\item Or for none ..
-%\end{itemize}
-\end{minipage}
-\end{frame}
-
-\begin{frame}[fragile]{ Context and Generators}
-\begin{minipage}{0.45\textwidth}
-\begin{tikzpicture}
-    % Place nodes
-    \node [block] (init) {Create and initialize Context};
-    \node [block, below of=init] (generators) {Create and start Generators};
-    \node [block, below of=generators] (wait) {Wait and update Context};
-    \node [block, below of=wait, fill=red!30] (do) {Do something and Visualize it};
-    \node [block, below of=do] (stop) {Stop Generators and Remove Context};
-    % Draw edges
-    \path [line] (init) -- (generators);
-    \path [line] (generators) -- (wait);
-    \path [line] (wait) -- (do);
-    \path [line] (do) -- (stop);
-    %\path [line] (viz) -| (wait);
-     \path [line] (do.east) to[out=50,in=-50] (wait.east);
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-Some things that you can do:
-\begin{small}
-\begin{minted}{python}
-depth_gen.get_tuple_depth_map()
-
-skel.get_joint_position(id, i)
-
-image_gen.get_raw_image_map_bgr()
-\end{minted}
-\end{small}
-\end{minipage}
-\end{frame}
-
-\begin{frame}[fragile]{ Context and Generators}
-\begin{minipage}{0.45\textwidth}
-\begin{tikzpicture}
-    % Place nodes
-    \node [block] (init) {Create and initialize Context};
-    \node [block, below of=init] (generators) {Create and start Generators};
-    \node [block, below of=generators] (wait) {Wait and update Context};
-    \node [block, below of=wait] (do) {Do something and Visualize it};
-    \node [block, below of=do, fill=red!30] (stop) {Stop Generators and Remove Context};
-    % Draw edges
-    \path [line] (init) -- (generators);
-    \path [line] (generators) -- (wait);
-    \path [line] (wait) -- (do);
-    \path [line] (do) -- (stop);
-    %\path [line] (viz) -| (wait);
-     \path [line] (do.east) to[out=50,in=-50] (wait.east);
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-Ways to stop data acquisition:
-\begin{minted}{python}
- ctx.stop_generating_all()
-
- node_gen.stop_generating()
-
- ctx.shutdown()
- \end{minted}
-\end{minipage}
-\end{frame}
-
-\begin{frame}{ Demo Time}
-\begin{figure}[h]
-		\includegraphics[scale = 0.15]{Imagenes/demo.png}
+%---------------------------------------------------------------------------
+\section{Muy bonito todo .. pero vamos a los bifes}
+\begin{frame}{A programar ...}
+ \begin{figure}[h]
+%   \begin{center}
+        \includegraphics[scale = 0.25]{Imagenes/xkcd.png}
+%   \end{center}
+    %\caption{Landmarks de tipo II, imagen obtenida de ~\cite{Gonzalez2011} }
 \end{figure}
-\end{frame}
-
-
-\begin{frame}{ Skeleton Basics}
-\begin{minipage}{0.45\textwidth}
-Skeleton and Pose Capabilities
-\begin{itemize}
-	\item Profile
-	\item Joints
-	\item Start/ Stop Calibration
-	\item Start/ Stop Tracking
-\end{itemize}
-\end{minipage}
-\begin{minipage}{0.45\textwidth}
-\begin{figure}[h]
-		\includegraphics[scale = 0.05]{Imagenes/skeleton.jpg}
-\end{figure}
-\end{minipage}
-
-\end{frame}
-
-\begin{frame}{ Demo Time}
-\begin{figure}[h]
-		\includegraphics[scale = 0.15]{Imagenes/demo.png}
-\end{figure}
-\end{frame}
-
-\begin{frame}{ Hand and Gesture tracking}
-\begin{minipage}{0.45\textwidth}
-Gesture and Hands Generator
-\begin{itemize}
-	\item Add/Remove Gestures (Wave, click, etc)
-	\item Start/ Stop Tracking
-\end{itemize}
-\end{minipage}
-\begin{minipage}{0.45\textwidth}
-\begin{figure}[h]
-		\includegraphics[scale = 0.2]{Imagenes/thing.jpg}
-\end{figure}
-\end{minipage}
-\end{frame}
-
-\begin{frame}{ Demo Time}
-\begin{figure}[h]
-		\includegraphics[scale = 0.15]{Imagenes/demo.png}
-\end{figure}
-\end{frame}
-
-%\begin{frame}[fragile]{Demos (Cont.)}
-%\movie[height=5cm,width=10cm]{}{Videos/popeye.avi}
-%\end{frame}
-
-\section{Final Demo}
-\begin{frame}{ For the final demo ...}
-\begin{figure}[h]
-        \includegraphics[scale = 0.35]{Imagenes/final_pochi.png}
-\end{figure}
-\end{frame}
-
-%\begin{frame}{ PyOpenNI Stuff}
-
-%\end{frame}
-\section{Sorry Dave ..}
-
-\begin{frame}{ Q\&A}
-\begin{center}
-\begin{huge}
-Thank you!
-\end{huge}
-\end{center}
-\begin{figure}[h]
-		\includegraphics[scale = 0.15]{Imagenes/final.jpg}
-\end{figure}
-\begin{Small}
-\begin{itemize}
-    \item \url{https://github.com/celiacintas/3dsensors_talk}
-    \item \url{https://github.com/jmendeth/PyOpenNI}
-    \item \url{http://structure.io/openni}
-\end{itemize}
-\end{Small}
 \end{frame}
 
 \end{document}
+
